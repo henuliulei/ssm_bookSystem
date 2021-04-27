@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd">
+    <!--把数据库配置文件的配置信息引入到当前配置文件里面来-->
+    <context:property-placeholder location="classpath:db1.properties"/>
+    <!--使用数据库连接池，配置连接池信息-->
+    <bean id="datasource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+
+        <property name="driverClass" value="${jdbc.driver}"/>
+        <property name="jdbcUrl" value="${jdbc.url}"/>
+        <property name="user" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+
+        <property name="maxPoolSize" value="30"/>
+        <property name="minPoolSize" value="10"/>
+        <property name="initialPoolSize" value="10"/>
+        <property name="autoCommitOnClose" value="false"/>
+        <property name="checkoutTimeout" value="10000"/>
+
+        <property name="acquireRetryAttempts" value="2"/>
+    </bean>
+    <!--获取sqlSessionFactory对象-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+
+        <property name="dataSource" ref="datasource"/>
+
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+    </bean>
+    <!--改配置可以让dao包下面的（BookMapper）接口注册，之后便可以直接注入到service里面被使用-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+        <property name="basePackage" value="com.bupt.dao"/>
+    </bean>
+    <!--<bean id="bookMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">-->
+    <!--    <property name="mapperInterface" value="com.bupt.dao.BookMapper"/>-->
+    <!--    <property name="sqlSessionFactory" ref="sqlSessionFactory"/>-->
+    <!-- </bean>-->
+
+</beans>

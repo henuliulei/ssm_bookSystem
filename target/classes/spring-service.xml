@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans.xsd
+   http://www.springframework.org/schema/context
+   http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 扫描service相关的bean -->
+    <context:component-scan base-package="com.bupt.service"/>
+
+    <!--BookServiceImpl注入到IOC容器中,loginMapper已经被dao配置文件隐式的注册了
+    LoginServiceImpl除了可以显示的注册外，我们知道如果不想在xml文件中配置bean，我们
+    可以给我们的类加上spring组件注解，只需再配置下spring的扫描器就可以实现bean的自动载入
+    -->
+<!--    <bean id="LoginServiceImpl" class="com.bupt.service.LoginServiceImpl">-->
+<!--        <property name="loginMapper" ref="loginMapper"/>-->
+<!--    </bean>-->
+
+    <!-- 配置事务管理器，使得数据库连接池具有事务 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!-- 注入数据库连接池 -->
+        <property name="dataSource" ref="datasource"/>
+    </bean>
+
+</beans>
