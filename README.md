@@ -1,8 +1,9 @@
 #项目介绍
 本项目是基于ssm框架实现的前后端分离的项目，前端实现技术为vue，该项目则是其对应的后台接口的实现。<br>
-运行效果展示：     <br>
-相对应博客:   <br>
-前端程序:   <br>
+运行效果展示：![GIF](https://user-images.githubusercontent.com/39109665/116247996-fc540180-a79d-11eb-9572-0f17529d4a34.gif)
+     <br>
+相对应博客:[springmvc](https://www.cnblogs.com/henuliulei/p/14643052.html)   <br>
+前端程序:[github](https://github.com/henuliulei/book_vue)   <br>
 #使用技术
 *   spring+springmvc+mybatis
 *   mysql
