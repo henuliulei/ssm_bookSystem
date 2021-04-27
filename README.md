@@ -185,7 +185,8 @@
 *   权限拦截功能
 *   项目展示
 <br>
-![演示](./preview/GIF.gif)
+![GIF](https://user-images.githubusercontent.com/39109665/116238762-5f409b00-a794-11eb-98a9-4f56e707b71a.gif)
+
 #更新日志
 *   version[1]：  初步实现功能并上传
 #致谢和总结
